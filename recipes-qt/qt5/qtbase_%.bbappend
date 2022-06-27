@@ -1,0 +1,1 @@
+PACKAGECONFIG:append = " eglfs"
