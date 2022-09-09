@@ -1,5 +1,5 @@
-SUMMARY = ""
-LICENSE = ""
+SUMMARY = "Embedded OS for Lazarillo devices."
+LICENSE = "GPLv3"
 
 inherit core-image lazarillo-class
 
@@ -21,18 +21,26 @@ MISC_PKGS = " \
     psplash \
     "
 
+NETWORKING_PKGS = " \
+    iw \
+    wpa-supplicant \
+    dhcpcd \
+    networkmanager \
+    "
+
 QT_PKGS = " \
     qtbase qtbase-plugins qtbase-tools \
     qtdeclarative qtdeclarative-qmlplugins \
     qtgraphicaleffects qtgraphicaleffects-qmlplugins \
-    qtmultimedia qtmultimedia qtmultimedia-plugins qtmultimedia-qmlplugins \
+    qtmultimedia qtmultimedia-plugins qtmultimedia-qmlplugins \
     qtquickcontrols qtquickcontrols-qmlplugins \
     qtquickcontrols2 qtquickcontrols2-qmlplugins \
     qtvirtualkeyboard qtvirtualkeyboard-plugins qtvirtualkeyboard-qmlplugins \
+    qtxmlpatterns \
     "
 
 LAZARILLO_PKGS = " \
-    lazarillo-hmi \
+    lazarillo-embedded \
     "
 
 ###################################################
@@ -40,11 +48,13 @@ LAZARILLO_PKGS = " \
 
 IMAGE_FEATURES += " \
     autologin \
+    ssh-server-dropbear \
     "
 
 IMAGE_INSTALL += " \
     ${CORE_PKGS} \
-    ${MISC_PKGS} \
-    ${QT_PKGS} \
     ${LAZARILLO_PKGS} \
+    ${MISC_PKGS} \
+    ${NETWORKING_PKGS} \
     "
+    # ${QT_PKGS} \

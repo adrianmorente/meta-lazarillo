@@ -1,6 +1,5 @@
 # Compiles Qt project with cmake after downloading
-inherit cmake
-inherit cmake_qt5
+inherit autotools cmake cmake_qt5
 
 # AUTOREV references to newest commit
 SRCREV = "${AUTOREV}"
@@ -24,19 +23,21 @@ DEPENDS += " \
         qtxmlpatterns \
         "
 
-RDEPENDS_${PN} += "qtdeclarative-qmlplugins \
+RDEPENDS_${PN} += " \
+        qtbase-qmlplugins qtbase-tools \
+        qtdeclarative-qmlplugins \
         qtgraphicaleffects-qmlplugins \
-        qtmultimedia-qmlplugins \
+        qtmultimedia-plugins qtmultimedia-qmlplugins \
         qtquickcontrols-qmlplugins \
         qtquickcontrols2-qmlplugins \
-        qtvirtualkeyboard-qmlplugins \
+        qtvirtualkeyboard-plugins qtvirtualkeyboard-qmlplugins \
         "
 
 S = "${WORKDIR}/git"
 
 do_install() {
     install -d ${D}${bindir}
-    install -m 0700 lazarillo-hmi ${D}${bindir}
+    install -m 0700 lazarillo-embedded ${D}${bindir}
 }
 
 FILES_${PN} = "${bindir}"
